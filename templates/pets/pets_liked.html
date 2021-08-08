@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class='text-center'>All liked pets</h1>
+        <div class="row">
+            {% for pet_liked in user_liked_pets %}
+                <div class="col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ pet_liked.pet.image.url }}" class="card-img-top" alt="{{ pet_liked.pet.description }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pet_liked.pet.type }} {{ pet_liked.pet.name }}, Age: {{ pet_liked.pet.age }}</h5>
+                            <p class="card-text">{{ pet_liked.pet.description }}</p>
+                            <a href="{% url 'pet details' pet_liked.pet.id %}" class="btn btn-primary">See details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

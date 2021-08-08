@@ -1,0 +1,24 @@
+{% extends 'shared/base.html' %}
+{% block content %}
+    <h1>Search Results</h1>
+    <form action="{% url 'search results' %}" method="get">
+        <input name="q_name" type="text" placeholder="Search...">
+        <input class="btn btn-primary" style="font-size: 25px; margin-top: 10px; margin-left: 450px" type="submit"
+               value="search">
+    </form>
+    <ul>
+        {% for search_obj in object_list %}
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ search_obj.image.url }}" class="card-img-top" alt="{{ search_obj.description }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ search_obj.type }} {{ search_obj.name }},
+                            Age: {{ search_obj.age }}</h5>
+                        <p class="card-text">{{ search_obj.description }}</p>
+                        <a href="{% url 'pet details' search_obj.id %}" class="btn btn-primary">See details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+{% endblock %}
